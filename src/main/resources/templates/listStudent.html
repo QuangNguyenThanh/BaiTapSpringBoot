@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <title>Admin</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/boostrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <script language="javascript" src="scripts/script.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <a href="listStudent.html"><img class="logo rounded" src="images/logo.jpg" alt="logo"/></a> 
+            <a id="logout" th:href="@{/index}">Logout</a>
+            <p class="welcome" th:utext="${username}"></p>
+            <p class="welcome">Welcome,</p>
+            <form class="form" role="form" method="post" action="update">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Student Code:</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="studentCode">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Student Name</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="studentName">
+                    </div>
+                    <div class="col-sm-4">
+                        <button class="btn btn-dark" type="submit">Search</button>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Birthday:</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="calendar-js" onclick="createTable()" readonly>
+                    </div>
+                    <div class="col-sm-4">
+                        <a th:href="@{/updateStudent}"><button class="btn btn-dark" type="button">Add Student</button></a>
+                    </div>
+                </div> 
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                    </div>
+                    <div id="calendar_table" class="calendar col-sm-4">
+                    </div>
+                </div>     
+            </form>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Code</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Birthday</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Score</th>
+                        <th scope="col">Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                	<tr th:each ="student : ${listStudent}">
+                		<th scope="row" th:utext="${student.info_id}"></th>
+                        <td th:utext="${student.student_id}"></td>
+                        <td th:utext="${student.student.student_name}"></td>
+                        <td th:utext="${student.date_of_birth}"></td>
+                        <td th:utext="${student.address}"></td>
+                        <td th:utext="${student.average_score}"></td>
+                        <td>
+                            <button class="btn btn-light edit"></button>
+                            <button class="btn btn-light delete"></button>
+                       	</td>
+		            </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>2001150128</td>
+                        <td>Nguyen Thanh Quang</td>
+                        <td>02/07/1997</td>
+                        <td>Quan TB</td>
+                        <td>9</td>
+                        <td>
+                            <button class="btn btn-light edit"></button>
+                            <button class="btn btn-light delete"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>2001150176</td>
+                        <td>Nguyen Thai Bao</td>
+                        <td>01/01/1997</td>
+                        <td>Quan TP</td>
+                        <td>8</td>
+                        <td>
+                            <button class="btn btn-light edit"></button>
+                            <button class="btn btn-light delete"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>2001150000</td>
+                        <td>Tran Le Van Duc</td>
+                        <td>02/02/1997</td>
+                        <td>Quan TB</td>
+                        <td>1</td>
+                        <td>
+                            <button class="btn btn-light edit"></button>
+                            <button class="btn btn-light delete"></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </body>
+</html>
